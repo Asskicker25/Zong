@@ -19,6 +19,9 @@ namespace Scripts.Player
 
         public Vector3 LookDir { get => GetCameraForwardAxis(); }
 
+
+        private float mMouseClampValue = 0.75f;
+
         private Vector2 mLastMousePos = Vector2.zero;
         private Vector2 mCurrentMousePos = Vector2.zero;
         private Vector3 mParentRotation = Vector3.zero;
@@ -61,6 +64,9 @@ namespace Scripts.Player
 
             mMouseDelta.x = Input.GetAxisRaw("Mouse X");
             mMouseDelta.y = Input.GetAxisRaw("Mouse Y");
+
+            mMouseDelta.x = Mathf.Clamp(mMouseDelta.x, -mMouseClampValue, mMouseClampValue);
+            mMouseDelta.y = Mathf.Clamp(mMouseDelta.y, -mMouseClampValue, mMouseClampValue);
         }
 
         private void HandleRotation()
