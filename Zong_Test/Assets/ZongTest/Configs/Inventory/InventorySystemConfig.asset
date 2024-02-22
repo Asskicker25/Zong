@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfInventoryConfigs:
   - {fileID: 11400000, guid: f2234f9c691124041887a8ad3878a37e, type: 2}
+  - {fileID: 11400000, guid: 07fd775d305b3b941982aa010049dc4b, type: 2}
+  - {fileID: 11400000, guid: 355d75d46c253604aac24e06ddc1cb0f, type: 2}
+  categoryUIElement: {fileID: 8956169844105919360, guid: 47e727fba4007ca4e9e60ab852a3afa0, type: 3}

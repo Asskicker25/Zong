@@ -24,14 +24,14 @@ namespace Scripts.UI
             _canvasGroup.alpha = 0;
         }
 
-        public void Open(float time = 0.5f)
+        public virtual void Open(float time = 0.5f)
         {
             _canvasGroup.DOFade(1, time);
             _canvasGroup.interactable = true;
             _canvasGroup.blocksRaycasts = true;
         }
 
-        public void Close(float time = 0.5f)
+        public virtual void Close(float time = 0.5f)
         {
             _canvasGroup.DOFade(0, time);
             _canvasGroup.interactable = false;

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Scripts.UI;
 
 namespace Scripts.Inventory
 {
@@ -7,6 +8,8 @@ namespace Scripts.Inventory
     public class InventorySystemConfig : ScriptableObject
     {
         public List<BaseInventoryConfig> listOfInventoryConfigs = new List<BaseInventoryConfig>();
+
+        public InventoryCategoryUIElement categoryUIElement;
     }
 
 }

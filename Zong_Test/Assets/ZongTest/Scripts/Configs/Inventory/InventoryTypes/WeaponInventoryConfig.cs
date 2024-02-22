@@ -8,5 +8,10 @@ namespace Scripts.Inventory
     public class WeaponInventoryConfig : BaseInventoryConfig
     {
         public List<BaseWeaponConfig> listOfWeaponConfigs = new List<BaseWeaponConfig>();
+
+        private void Reset()
+        {
+            inventoryType = eInvetoryType.WEAPON;
+        }
     }
 }

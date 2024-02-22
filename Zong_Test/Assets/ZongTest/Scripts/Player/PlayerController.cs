@@ -1,6 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 using System;
+using Scripts.UI;
 
 namespace Scripts.Player
 {
@@ -25,16 +26,30 @@ namespace Scripts.Player
 
         private Vector3 _moveDir = Vector3.zero;
 
+        private void Awake()
+        {
+            InventoryWindow.OnInventoryClosed += HandleInventoryClose;
+        }
+
+        private void OnDestroy()
+        {
+            InventoryWindow.OnInventoryClosed -= HandleInventoryClose;
+        }
+
+      
         public void Enable()
         {
             enabled = true;
             _camController.enabled = true;
+            Cursor.visible = false;
         }
 
         public void Disable()
         {
             enabled = false;
             _camController.enabled = false;
+            _rigidbody.velocity = Vector3.zero;
+            Cursor.visible = true;
         }
 
         private void Update()
@@ -81,10 +96,21 @@ namespace Scripts.Player
         {
             if(Input.GetKey(KeyCode.Space))
             {
-                Disable();
-                OnInventoryOpen.Invoke();
+                OpenInventory();
             }
         }
+
+        private void OpenInventory()
+        {
+            Disable();
+            OnInventoryOpen.Invoke();
+        }
+
+        private void HandleInventoryClose()
+        {
+            Enable();
+        }
+
     }
 
 }

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2199e8fdb67717c4cb9ebff51b0e31d0, type: 3}
   m_Name: WeaponInventory
   m_EditorClassIdentifier: 
+  categoryName: Weapon
+  uiCategoryPanel: {fileID: -1768127552211228681, guid: 1cdf30822a72f774f80c8910501d5a99, type: 3}
   listOfWeaponConfigs:
-  - {fileID: 11400000, guid: 14f2dff60894af14689c1e62a3ce4e2d, type: 2}
+  - {fileID: 11400000, guid: 7c04deac621803c489b10ca577600207, type: 2}
