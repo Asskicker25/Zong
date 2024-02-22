@@ -6,25 +6,20 @@ namespace Scripts.Player
     public class FirstPersonCameraController : MonoBehaviour
     {
         [Foldout("Components")]
-        [SerializeField] private Camera mCamera;
+        [SerializeField] private Camera _camera;
         [Foldout("Components")]
-        [SerializeField] private Transform mCameraTransform;
-        [Foldout("Components")]
-        [SerializeField] private Transform mParentTransform;
+        [SerializeField] private Transform _cameraTransform;
 
         [Foldout("RotateVariables")]
-        [SerializeField] private Vector2 mMouseDelta = Vector2.zero;
+        [SerializeField] private Vector2 _mouseDelta = Vector2.zero;
         [Foldout("RotateVariables")]
-        [SerializeField] private Vector2 mSenstivity = Vector2.one;
+        [SerializeField] private Vector2 _senstivity = Vector2.one;
 
-        public Vector3 LookDir { get => GetCameraForwardAxis(); }
+        private float _mouseClampValue = 0.75f;
 
-
-        private float mMouseClampValue = 0.75f;
-
-        private Vector2 mLastMousePos = Vector2.zero;
-        private Vector2 mCurrentMousePos = Vector2.zero;
-        private Vector3 mParentRotation = Vector3.zero;
+        private Vector2 _lastMousePos = Vector2.zero;
+        private Vector2 _currentMousePos = Vector2.zero;
+        private Vector3 _parentRotation = Vector3.zero;
 
         private void Start()
         {
@@ -42,15 +37,14 @@ namespace Scripts.Player
         //And since we can call it in editor time, when creating an asset, no issues with performance.
         private void Reset()
         {
-            mCamera = GetComponentInChildren<Camera>();
-            mCameraTransform = mCamera.transform;
-            mParentTransform = transform.parent.transform;
+            _camera = GetComponentInChildren<Camera>();
+            _cameraTransform = _camera.transform;
         }
 
         private void Initialize()
         {
-            mParentRotation = mParentTransform.rotation.eulerAngles;
-            mLastMousePos = Input.mousePosition;
+            _parentRotation = transform.rotation.eulerAngles;
+            _lastMousePos = Input.mousePosition;
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.None;
@@ -58,38 +52,28 @@ namespace Scripts.Player
 
         private void SetInput()
         {
-            /*    mCurrentMousePos = Input.mousePosition;
-                mMouseDelta = mCurrentMousePos - mLastMousePos;
-                mLastMousePos = mCurrentMousePos;*/
+           /* _currentMousePos = Input.mousePosition;
+            _mouseDelta = _currentMousePos - _lastMousePos;
+            _lastMousePos = _currentMousePos;*/
 
-            mMouseDelta.x = Input.GetAxisRaw("Mouse X");
-            mMouseDelta.y = Input.GetAxisRaw("Mouse Y");
+             _mouseDelta.x = Input.GetAxisRaw("Mouse X");
+             _mouseDelta.y = Input.GetAxisRaw("Mouse Y");
 
-            mMouseDelta.x = Mathf.Clamp(mMouseDelta.x, -mMouseClampValue, mMouseClampValue);
-            mMouseDelta.y = Mathf.Clamp(mMouseDelta.y, -mMouseClampValue, mMouseClampValue);
+            _mouseDelta.x = Mathf.Clamp(_mouseDelta.x, -_mouseClampValue, _mouseClampValue);
+            _mouseDelta.y = Mathf.Clamp(_mouseDelta.y, -_mouseClampValue, _mouseClampValue);
         }
 
         private void HandleRotation()
         {
             //mNewCamRotation.y += mMouseDelta.x * mSenstivity.x * Time.deltaTime;
-            Vector3 mNewCamRotation = mCameraTransform.rotation.eulerAngles;
+            Vector3 _newCamRotation = _cameraTransform.rotation.eulerAngles;
 
-            mNewCamRotation.x -= mMouseDelta.y * mSenstivity.y * Time.deltaTime;
-            mParentRotation.y += mMouseDelta.x * mSenstivity.x * Time.deltaTime;
+            _newCamRotation.x -= _mouseDelta.y * _senstivity.y * Time.deltaTime;
+            _parentRotation.y += _mouseDelta.x * _senstivity.x * Time.deltaTime;
 
-            mCameraTransform.rotation = Quaternion.Euler(mNewCamRotation);
-            mParentTransform.rotation = Quaternion.Euler(mParentRotation);
+            _cameraTransform.rotation = Quaternion.Euler(_newCamRotation);
+            transform.rotation = Quaternion.Euler(_parentRotation);
         }
-
-        public Vector3 GetCameraForwardAxis()
-        {
-            Vector3 forward = mCameraTransform.forward;
-            forward.y = 0;
-            forward.Normalize();
-
-            return forward;
-        }
-
     }
 }
 

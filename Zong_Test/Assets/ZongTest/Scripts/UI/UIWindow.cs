@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -15,7 +13,7 @@ namespace Scripts.UI
         public bool awakeOnStart;
         public eUIWindowType windowType;
 
-        private UIWindowService _windowService;
+        protected UIWindowService windowService;
 
 
         protected virtual void Reset()
@@ -42,7 +40,7 @@ namespace Scripts.UI
 
         public void SetWindowService(UIWindowService windowService )
         {
-            this._windowService = windowService;
+            this.windowService = windowService;
         }
     }
 

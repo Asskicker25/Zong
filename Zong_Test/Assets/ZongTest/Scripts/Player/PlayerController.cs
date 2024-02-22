@@ -1,73 +1,89 @@
 using UnityEngine;
 using NaughtyAttributes;
+using System;
 
 namespace Scripts.Player
 {
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
+        public static event Action OnInventoryOpen = delegate { };
+        public static event Action OnInventoryClose = delegate { };
 
         [Foldout("Move Variables")]
-        [SerializeField] private float mMoveSpeed = 10;
+        [SerializeField] private float _moveSpeed = 10;
         [Foldout("Move Variables")]
-        [SerializeField] private Vector2 mInput = Vector2.zero;
-        [Foldout("Move Variables")]
-        [SerializeField] private Vector3 mLookDir = Vector3.zero;
+        [SerializeField] private Vector2 _input = Vector2.zero;
 
         [Foldout("Componenets")]
-        [SerializeField] private Rigidbody mRigidbody;
+        [SerializeField] private Rigidbody _rigidbody;
         [Foldout("Componenets")]
-        [SerializeField] private FirstPersonCameraController mCamController;
+        [SerializeField] private FirstPersonCameraController _camController;
 
 
+        private bool _canMove = false;
 
-        private bool mCanMove = false;
+        private Vector3 _moveDir = Vector3.zero;
 
-        private Vector3 mMoveDir = Vector3.zero;
+        public void Enable()
+        {
+            enabled = true;
+            _camController.enabled = true;
+        }
+
+        public void Disable()
+        {
+            enabled = false;
+            _camController.enabled = false;
+        }
 
         private void Update()
         {
-            if (!(mCanMove = SetInput() != 0)) { return; }
+            if (!(_canMove = SetInput() != 0)) { return; }
         }
 
         private void FixedUpdate()
         {
             HandleMovement();
-            HandleRotation();
         }
 
         //This avoids having the drag-drop to refer.
         //And since we can call it in editor time, when creating an asset, no issues with performance.
         private void Reset()
         {
-            mCamController = GetComponentInChildren<FirstPersonCameraController>();
-            mRigidbody = GetComponentInChildren<Rigidbody>();
+            _camController = GetComponentInChildren<FirstPersonCameraController>();
+            _rigidbody = GetComponentInChildren<Rigidbody>();
         }
 
         private float SetInput()
         {
-            mInput.x = Input.GetAxisRaw("Horizontal");
-            mInput.y = Input.GetAxisRaw("Vertical");
+            _input.x = Input.GetAxisRaw("Horizontal");
+            _input.y = Input.GetAxisRaw("Vertical");
 
-            mInput.Normalize();
+            _input.Normalize();
 
-            return mInput.magnitude;
+            HandleInventoryOpen();
+
+            return _input.magnitude;
         }
 
         private void HandleMovement()
         {
             // Calling in fixed update. So can avoid deltaTime multiplication.
 
-            mMoveDir = transform.forward * mInput.y;
-            mMoveDir += transform.right * mInput.x;
+            _moveDir = transform.forward * _input.y;
+            _moveDir += transform.right * _input.x;
 
-            mRigidbody.velocity = mMoveDir;
+            _rigidbody.velocity = _moveDir;
         }
 
-        private void HandleRotation()
+        private void HandleInventoryOpen()
         {
-            mLookDir = mCamController.LookDir;
-            //mSkinTransform.rotation = Quaternion.LookRotation(mLookDir);
+            if(Input.GetKey(KeyCode.Space))
+            {
+                Disable();
+                OnInventoryOpen.Invoke();
+            }
         }
     }
 

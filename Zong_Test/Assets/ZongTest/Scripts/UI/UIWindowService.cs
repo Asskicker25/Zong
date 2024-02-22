@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
 namespace Scripts.UI
@@ -18,19 +16,15 @@ namespace Scripts.UI
         private void Reset()
         {
             _windows = GetComponentsInChildren<UIWindow>().ToList();
-
-            foreach (var window in _windows)
-            {
-                window.SetWindowService(this);
-
-                _windowsCached[window.windowType] = window;
-            }
         }
 
         private void Start()
         {
             foreach (var window in _windows)
             {
+                _windowsCached[window.windowType] = window;
+
+                window.SetWindowService(this);
 
                 if (window.awakeOnStart)
                 {

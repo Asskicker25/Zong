@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/ZongTest/Scenes/MainScene.unity
+    guid: 3745cb884e356cd409f1352d0480f0f3
   m_configObjects: {}
