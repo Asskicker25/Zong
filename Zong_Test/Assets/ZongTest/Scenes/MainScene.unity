@@ -1132,6 +1132,10 @@ PrefabInstance:
       propertyPath: categoryContentPanel
       value: 
       objectReference: {fileID: 398024202}
+    - target: {fileID: 2748202854982923588, guid: 3415cbedcb12c874b9861779a4a2bc2a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -41.64795
+      objectReference: {fileID: 0}
     - target: {fileID: 3446260370018588441, guid: 3415cbedcb12c874b9861779a4a2bc2a, type: 3}
       propertyPath: m_Alpha
       value: 1

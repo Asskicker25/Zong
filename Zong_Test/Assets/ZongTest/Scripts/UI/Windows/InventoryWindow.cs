@@ -84,8 +84,9 @@ namespace Scripts.UI
                 BaseInventoryCategory spawnedCategoryPanel = Instantiate(config.uiCategoryPanel, categoryParentPanel);
 
                 spawnedCategoryTab.Setup(config);
-                spawnedCategoryPanel.Setup(spawnedCategoryTab);
                 spawnedCategoryTab.OnCategorySelected += CategoryTab_OnCategorySelected;
+
+                spawnedCategoryPanel.Setup(config, spawnedCategoryTab);
 
                 listOfCategories.Add(config.inventoryType, spawnedCategoryPanel);
             }

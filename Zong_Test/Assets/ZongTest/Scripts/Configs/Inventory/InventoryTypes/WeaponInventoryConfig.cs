@@ -7,7 +7,10 @@ namespace Scripts.Inventory
     [CreateAssetMenu(fileName = "WeaponInventory", menuName = "Configs/Inventory/WeaponInventory")]
     public class WeaponInventoryConfig : BaseInventoryConfig
     {
-        public List<BaseWeaponConfig> listOfWeaponConfigs = new List<BaseWeaponConfig>();
+        public List<BaseWeaponCategoryConfig> listOfWeaponCategories = new List<BaseWeaponCategoryConfig>();
+
+        public InventoryCategoryUIElement categoryTab;
+        public BaseWeaponCategoryPanel categoryPanel;
 
         private void Reset()
         {

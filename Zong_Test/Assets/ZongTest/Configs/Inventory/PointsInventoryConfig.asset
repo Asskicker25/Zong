@@ -15,3 +15,5 @@ MonoBehaviour:
   categoryName: Points
   inventoryType: 1
   uiCategoryPanel: {fileID: 7423460266858951306, guid: 73387ab1d0b7d5e4aa1d090cf0bd620f, type: 3}
+  tabSelectedColor: {r: 0.05, g: 0.05, b: 0.05, a: 1}
+  tabUnSelectedColor: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}

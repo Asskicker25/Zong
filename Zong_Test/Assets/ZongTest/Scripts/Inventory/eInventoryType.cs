@@ -6,6 +6,9 @@ namespace Scripts.Inventory
         WEAPON = 0,
         POINTS = 1,
         INSTRUMENTS = 2,
+        WEAPON_WOLFSTONE = 3,
+        WEAPON_LIZARDCRYSTAL = 4,
+        WEAPON_SKULLCRUSH  = 5,
     }
 
 }

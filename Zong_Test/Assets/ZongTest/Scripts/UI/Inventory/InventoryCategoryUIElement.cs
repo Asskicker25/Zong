@@ -10,33 +10,31 @@ namespace Scripts.Inventory
     {
         public event Action<eInvetoryType> OnCategorySelected = delegate { };
 
-        [SerializeField] private Color selectedColor = Color.black;
-        [SerializeField] private Color unSelectedColor = Color.grey;
-
         [SerializeField] private TextMeshProUGUI textCached;
         [SerializeField] private Image imageCached;
         [SerializeField] private Button buttonCached;
 
-        private BaseInventoryConfig _config;
+        private BaseInventoryConfig config;
 
         public void Setup(BaseInventoryConfig config)
         {
-            _config = config;
+            this.config = config;
+          
+            textCached.SetText(config.categoryName);
 
-            textCached.text = config.categoryName;
-            imageCached.color = unSelectedColor;
+            imageCached.color  = config.tabUnSelectedColor;
 
             buttonCached.onClick.AddListener(SelectCategory);
         }
 
         public void SetState(bool selected)
         {
-            imageCached.DOColor(selected ? selectedColor : unSelectedColor, 0.5f);
+            imageCached.DOColor(selected ? config.tabSelectedColor : config.tabUnSelectedColor, 0.5f);
         }
 
         private void SelectCategory()
         {
-            OnCategorySelected.Invoke(_config.inventoryType);
+            OnCategorySelected.Invoke(config.inventoryType);
         }
 
         private void Reset()

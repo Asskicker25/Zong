@@ -5,11 +5,17 @@ namespace Scripts.Inventory
 {
     public class BaseInventoryCategory : UIWindow
     {
+        [HideInInspector]
         public InventoryCategoryUIElement categoryTab;
 
-        public void Setup(InventoryCategoryUIElement categoryTab)
+        [SerializeField] BaseInventoryConfig config;
+
+        public virtual void Setup(BaseInventoryConfig config, InventoryCategoryUIElement categoryTab)
         {
-            this.categoryTab = categoryTab; 
+            this.config = config;
+            this.categoryTab = categoryTab;
+
+            Close();
         }
 
         public override void Open(float time = 0.5F)

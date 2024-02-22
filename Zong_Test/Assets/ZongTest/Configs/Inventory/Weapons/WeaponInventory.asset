@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2199e8fdb67717c4cb9ebff51b0e31d0, type: 3}
+  m_Name: WeaponInventory
+  m_EditorClassIdentifier: 
+  categoryName: Weapon
+  inventoryType: 0
+  uiCategoryPanel: {fileID: -1768127552211228681, guid: 1cdf30822a72f774f80c8910501d5a99, type: 3}
+  tabSelectedColor: {r: 0.05, g: 0.05, b: 0.05, a: 1}
+  tabUnSelectedColor: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
+  listOfWeaponCategories:
+  - {fileID: 11400000, guid: 5b97e84b6e5a44b41949dc444f53cd73, type: 2}
+  - {fileID: 11400000, guid: fc4a07a803cc5e9468eea9dcc9afd48b, type: 2}
+  - {fileID: 11400000, guid: 88753e568ee167843a433329be09c7cd, type: 2}
+  categoryTab: {fileID: 8956169844105919360, guid: 47e727fba4007ca4e9e60ab852a3afa0, type: 3}
+  categoryPanel: {fileID: 7815846144164305759, guid: 6ae45c71549b5bf4ab5a85c0ed61d70e, type: 3}
