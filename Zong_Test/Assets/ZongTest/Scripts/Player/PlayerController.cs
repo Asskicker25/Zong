@@ -2,6 +2,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using System;
 using Scripts.UI;
+using Scripts.Inventory;
 
 namespace Scripts.Player
 {
@@ -20,6 +21,8 @@ namespace Scripts.Player
         [SerializeField] private Rigidbody _rigidbody;
         [Foldout("Componenets")]
         [SerializeField] private FirstPersonCameraController _camController;
+        [Foldout("Componenets")]
+        public PlayerInventory playerInventory;
 
 
         private bool _canMove = false;
@@ -35,8 +38,6 @@ namespace Scripts.Player
         {
             InventoryWindow.OnInventoryClosed -= HandleInventoryClose;
         }
-
-      
         public void Enable()
         {
             enabled = true;
@@ -68,6 +69,7 @@ namespace Scripts.Player
         {
             _camController = GetComponentInChildren<FirstPersonCameraController>();
             _rigidbody = GetComponentInChildren<Rigidbody>();
+            playerInventory = GetComponentInChildren<PlayerInventory>();
         }
 
         private float SetInput()

@@ -1,13 +1,16 @@
 using UnityEngine;
 using Scripts.GameLoop;
+using Scripts.Inventory;
 
 namespace Scripts.Player
 {
     public class PlayerService : MonoBehaviour
     {
         [SerializeField] PlayerConfig playerConfig;
+        [SerializeField] InventoryService inventoryService;
 
         private PlayerController _playerController;
+        private InventoryService _inventoryServiceInstance;
 
         public void OnEnable()
         {
@@ -31,6 +34,10 @@ namespace Scripts.Player
                 Instantiate(playerConfig.playerController, transform)
                 : transform.GetChild(0).GetComponent<PlayerController>();
 
+
+            _inventoryServiceInstance = Instantiate(inventoryService, transform);
+
+            _playerController.playerInventory.Setup(_inventoryServiceInstance);
             _playerController.Disable();
 
         }

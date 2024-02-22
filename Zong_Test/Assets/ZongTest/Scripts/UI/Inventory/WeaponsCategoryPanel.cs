@@ -10,7 +10,6 @@ namespace Scripts.Inventory
     {
         [SerializeField] private Transform tabParentPanel;
         [SerializeField] private Transform categoryParentPanel;
-        [SerializeField] private Transform contentParentPanel;
 
         private WeaponInventoryConfig _weaponConfig;
 
@@ -28,20 +27,17 @@ namespace Scripts.Inventory
         public override void Open(float time = 0.5F)
         {
             base.Open(time);
-            contentParentPanel.transform.DOScale(1.0f, 0.5f);
         }
 
         public override void Close(float time = 0.5F)
         {
             base.Close(time);
-            contentParentPanel.transform.DOScale(0.0f, 0.5f);
         }
 
         public override void Setup(BaseInventoryConfig config, InventoryCategoryUIElement categoryTab)
         {
             base.Setup(config, categoryTab);
             _weaponConfig = (WeaponInventoryConfig)config;
-            contentParentPanel.transform.localScale = Vector3.zero;
 
             foreach (BaseWeaponCategoryConfig weapon in _weaponConfig.listOfWeaponCategories)
             {

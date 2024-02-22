@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerConfig: {fileID: 11400000, guid: 42a6586162d14d248ac4d76fc5259380, type: 2}
+  inventoryService: {fileID: 5034844543398544722, guid: 98578dc5f87650a49a9265caacd83bd5, type: 3}
 --- !u!1001 &6660656294130649773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54,10 +55,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6550728323189868515}
     m_Modifications:
-    - target: {fileID: 1756046457474262396, guid: 77a1158d834c90c47b17fea4719992d7, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1756046457474262396, guid: 77a1158d834c90c47b17fea4719992d7, type: 3}
       propertyPath: m_VersionIndex
       value: 373
@@ -101,10 +98,6 @@ PrefabInstance:
     - target: {fileID: 3934510639947001856, guid: 77a1158d834c90c47b17fea4719992d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5205681707640971698, guid: 77a1158d834c90c47b17fea4719992d7, type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8805298362771176798, guid: 77a1158d834c90c47b17fea4719992d7, type: 3}
       propertyPath: m_Name

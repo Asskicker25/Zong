@@ -1,5 +1,6 @@
 using UnityEngine;
 using Scripts.UI;
+using DG.Tweening;
 
 namespace Scripts.Inventory
 {
@@ -20,14 +21,18 @@ namespace Scripts.Inventory
 
         public override void Open(float time = 0.5F)
         {
-            base.Open(time);
+            transform.DOScale(1.0f, time);
             categoryTab.SetState(true);
+
+            base.Open(time);
         }
 
         public override void Close(float time = 0.5F)
         {
-            base.Close(time);
+            transform.DOScale(0.0f, time);
             categoryTab.SetState(false);
+
+            base.Close(time);
         }
     }
 }
