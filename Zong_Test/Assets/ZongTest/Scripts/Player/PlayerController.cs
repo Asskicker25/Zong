@@ -11,6 +11,7 @@ namespace Scripts.Player
     {
         public static event Action OnInventoryOpen = delegate { };
         public static event Action OnInventoryClose = delegate { };
+        public static event Action<Vector3, Vector3> OnPlayerMove = delegate { };
 
         [Foldout("Move Variables")]
         [SerializeField] private float _moveSpeed = 10;
@@ -94,6 +95,8 @@ namespace Scripts.Player
             _moveDir += transform.right * _input.x;
 
             _rigidbody.velocity = _moveDir * _moveSpeed;
+
+            OnPlayerMove.Invoke(transform.position, transform.forward);
         }
 
         private void HandleInventoryOpen()

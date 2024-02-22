@@ -4,7 +4,7 @@ namespace Scripts.Inventory
 {
     public class BaseInventoryItemConfig : ScriptableObject
     {
-
+        public string pickUpMessage = "Pick Up Item";
         public Sprite itemUISprite;
         public Color itemUIColor = Color.white;
 

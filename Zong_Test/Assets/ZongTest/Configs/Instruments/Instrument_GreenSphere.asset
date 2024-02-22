@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a69dcc280d2bb48835e608327e6840, type: 3}
   m_Name: Instrument_GreenSphere
   m_EditorClassIdentifier: 
+  pickUpMessage: A Green stone to lift coffin
   itemUISprite: {fileID: 21300000, guid: 0c3cb56e20a3a1345a517867572adb8f, type: 3}
   itemUIColor: {r: 0.43788594, g: 0.9245283, b: 0.25875157, a: 1}
   inventoryItem: {fileID: 4328452367918048209, guid: 13d1b64b17132dd48a980f16f32fe9bd, type: 3}

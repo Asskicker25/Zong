@@ -9,6 +9,7 @@ namespace Scripts.Inventory
     public class PlayerInventory : MonoBehaviour
     {
         public static event Action<BaseInventoryItemConfig> OnItemPicked = delegate { };
+        public static event Action<BaseInventoryItemConfig, Transform> OnItemDropped = delegate { };
 
         [Foldout("Raycast")]
         [SerializeField] private float _raycastDistance;
@@ -34,12 +35,15 @@ namespace Scripts.Inventory
         {
             InventoryWindow.OnInventoryClosed += InventoryWindow_OnInventoryClosed;
             InstrumentsCategoryPanel.OnSelected += InstrumentsCategoryPanel_OnSelected;
+            InventoryGridUIItem.OnDropItemClicked += InventoryGridUIItem_OnDropItemClicked;
         }
 
+       
         private void OnDisable()
         {
             InventoryWindow.OnInventoryClosed -= InventoryWindow_OnInventoryClosed;
             InstrumentsCategoryPanel.OnSelected -= InstrumentsCategoryPanel_OnSelected;
+            InventoryGridUIItem.OnDropItemClicked -= InventoryGridUIItem_OnDropItemClicked;
         }
 
         private void Update()
@@ -96,6 +100,12 @@ namespace Scripts.Inventory
 
             _rayHitItem.CollectItem();
             _inventoryService.AddItem(_rayHitItem.config);
+        }
+        private void InventoryGridUIItem_OnDropItemClicked(BaseInventoryItemConfig config)
+        {
+            _inventoryService.RemoveItem(config);
+
+            OnItemDropped.Invoke(config, transform);
         }
 
 

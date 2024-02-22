@@ -19,6 +19,17 @@ namespace Scripts.Inventory
 
         private InstrumentInventoryConfig _instrumentInventoryConfig;
 
+        private void OnEnable()
+        {
+            PlayerInventory.OnItemDropped += PlayerInventory_OnItemDropped;
+        }
+
+      
+        private void OnDisable()
+        {
+            PlayerInventory.OnItemDropped -= PlayerInventory_OnItemDropped;
+        }
+
         protected override void Reset()
         {
             base.Reset();
@@ -37,7 +48,13 @@ namespace Scripts.Inventory
             base.Open(time);
         }
 
-        private void DisplayItems(float time)
+        private void PlayerInventory_OnItemDropped(BaseInventoryItemConfig arg1, Transform arg2)
+        {
+            DisplayItems();
+        }
+
+
+        private void DisplayItems(float time = 0.5f)
         {
             if (_instrumentInventoryConfig.listOfInstruments.Count == 0)
             {
