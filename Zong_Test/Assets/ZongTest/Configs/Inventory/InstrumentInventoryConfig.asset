@@ -15,5 +15,7 @@ MonoBehaviour:
   categoryName: Instruments
   inventoryType: 2
   uiCategoryPanel: {fileID: 1447954052982957529, guid: 0cb088f0281397b47a767127a60b39f9, type: 3}
+  gridElement: {fileID: 7329885715060654088, guid: bcb1e185542b3e3489096873f8a350cb, type: 3}
   tabSelectedColor: {r: 0.05, g: 0.05, b: 0.05, a: 1}
   tabUnSelectedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  listOfInstruments: []

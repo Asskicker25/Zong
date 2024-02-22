@@ -9,7 +9,7 @@ namespace Scripts.Inventory
         [HideInInspector]
         public InventoryCategoryUIElement categoryTab;
 
-        [SerializeField] BaseInventoryConfig config;
+        [SerializeField] protected BaseInventoryConfig config;
 
         public virtual void Setup(BaseInventoryConfig config, InventoryCategoryUIElement categoryTab)
         {

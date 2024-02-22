@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2794cc9b63d65e458c56f57d691ce40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventorySystemConfig: {fileID: 11400000, guid: 882dc4d9c2be70f46a71f27ed217f44a, type: 2}
+  baseInstrumentItemConfig: {fileID: 11400000, guid: b35cd64d1c79bd441a0b784e32802353, type: 2}
