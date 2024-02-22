@@ -1,16 +1,20 @@
 using UnityEngine;
 using Scripts.GameLoop;
 using Scripts.Inventory;
+using Scripts.ItemSpawner;
 
 namespace Scripts.Player
 {
     public class PlayerService : MonoBehaviour
     {
-        [SerializeField] PlayerConfig playerConfig;
-        [SerializeField] InventoryService inventoryService;
+        [SerializeField] private PlayerConfig playerConfig;
+        [SerializeField] private InventoryService inventoryService;
+        [SerializeField] private ItemSpawnService itemSpawnService;
+        [SerializeField] private Vector3 playerSpawnPosition = Vector3.zero;
+        [HideInInspector] public PlayerController _playerController;
 
-        private PlayerController _playerController;
         private InventoryService _inventoryServiceInstance;
+
 
         public void OnEnable()
         {
@@ -34,10 +38,11 @@ namespace Scripts.Player
                 Instantiate(playerConfig.playerController, transform)
                 : transform.GetChild(0).GetComponent<PlayerController>();
 
+            _playerController.transform.position = playerSpawnPosition;
 
             _inventoryServiceInstance = Instantiate(inventoryService, transform);
 
-            _playerController.playerInventory.Setup(_inventoryServiceInstance);
+            _playerController.playerInventory.Setup(_inventoryServiceInstance, itemSpawnService);
             _playerController.Disable();
 
         }

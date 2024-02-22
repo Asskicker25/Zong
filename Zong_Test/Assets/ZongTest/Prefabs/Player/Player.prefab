@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5582273481379003127}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 376
+  m_VersionIndex: 382
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bfe3dd98c9d36843b409140dbebd4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 50
+  _moveSpeed: 3
   _input: {x: 0, y: 0}
   _rigidbody: {fileID: 2960498632959839633}
   _camController: {fileID: 3203650638124877973}
@@ -693,3 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3bead67de15f134390bee9da93c7ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _raycastDistance: 3
+  _raycastMask:
+    serializedVersion: 2
+    m_Bits: 64

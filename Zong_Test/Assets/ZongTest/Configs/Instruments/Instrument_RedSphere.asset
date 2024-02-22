@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemUISprite: {fileID: 21300000, guid: 0c3cb56e20a3a1345a517867572adb8f, type: 3}
   itemUIColor: {r: 0.8396226, g: 0.06864834, b: 0.06864834, a: 1}
-  inventoryItem: {fileID: 0}
+  inventoryItem: {fileID: 4328452367918048209, guid: 13d1b64b17132dd48a980f16f32fe9bd, type: 3}
+  modelMaterial: {fileID: 2100000, guid: cfc5bd7cbba5ffb4596ccc4eca0e7ff3, type: 2}
   invetoryType: 2
   instrumentType: 0

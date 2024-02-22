@@ -24,7 +24,6 @@ namespace Scripts.Player
         [Foldout("Componenets")]
         public PlayerInventory playerInventory;
 
-
         private bool _canMove = false;
 
         private Vector3 _moveDir = Vector3.zero;
@@ -32,17 +31,20 @@ namespace Scripts.Player
         private void Awake()
         {
             InventoryWindow.OnInventoryClosed += HandleInventoryClose;
+            PlayerInventory.OnItemPicked += PlayerInventory_OnItemPicked;
         }
 
         private void OnDestroy()
         {
             InventoryWindow.OnInventoryClosed -= HandleInventoryClose;
+            PlayerInventory.OnItemPicked -= PlayerInventory_OnItemPicked;
         }
+
         public void Enable()
         {
             enabled = true;
             _camController.enabled = true;
-            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void Disable()
@@ -50,7 +52,7 @@ namespace Scripts.Player
             enabled = false;
             _camController.enabled = false;
             _rigidbody.velocity = Vector3.zero;
-            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         private void Update()
@@ -91,12 +93,12 @@ namespace Scripts.Player
             _moveDir = transform.forward * _input.y;
             _moveDir += transform.right * _input.x;
 
-            _rigidbody.velocity = _moveDir;
+            _rigidbody.velocity = _moveDir * _moveSpeed;
         }
 
         private void HandleInventoryOpen()
         {
-            if(Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 OpenInventory();
             }
@@ -112,7 +114,12 @@ namespace Scripts.Player
         {
             Enable();
         }
+        private void PlayerInventory_OnItemPicked(BaseInventoryItemConfig config)
+        {
+            OpenInventory();
+        }
 
     }
+
 
 }

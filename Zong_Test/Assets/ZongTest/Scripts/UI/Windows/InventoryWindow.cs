@@ -2,10 +2,10 @@ using Scripts.Inventory;
 using System.Collections.Generic;
 using UnityEngine;
 using Scripts.Player;
-using System.Linq;
 using UnityEngine.UI;
 using System;
 using DG.Tweening;
+using System.Linq;
 
 namespace Scripts.UI
 {
@@ -104,6 +104,8 @@ namespace Scripts.UI
             windowService.CloseWindow(windowType);
 
             OnInventoryClosed.Invoke();
+
+            OpenCategory(listOfCategories.First().Key);
         }
 
         private void OnDestroy()

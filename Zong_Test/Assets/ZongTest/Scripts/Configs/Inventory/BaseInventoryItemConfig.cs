@@ -9,6 +9,7 @@ namespace Scripts.Inventory
         public Color itemUIColor = Color.white;
 
         public BaseInventoryItem inventoryItem;
+        public Material modelMaterial;
 
         public eInvetoryType invetoryType;
     }

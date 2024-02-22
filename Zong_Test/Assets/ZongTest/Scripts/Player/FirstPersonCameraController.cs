@@ -45,9 +45,6 @@ namespace Scripts.Player
         {
             _parentRotation = transform.rotation.eulerAngles;
             _lastMousePos = Input.mousePosition;
-
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.None;
         }
 
         private void SetInput()

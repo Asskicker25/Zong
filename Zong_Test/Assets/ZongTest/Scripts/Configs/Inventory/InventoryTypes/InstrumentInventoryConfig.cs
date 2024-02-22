@@ -50,6 +50,11 @@ namespace Scripts.Inventory
             if (result != null)
             {
                 result.count--;
+
+                if(result.count == 0)
+                {
+                    listOfInstruments.Remove(result);
+                }
             }
         }
 
