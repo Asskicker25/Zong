@@ -3,11 +3,13 @@ using Scripts.ItemSpawner;
 using Scripts.Inventory;
 using UnityEngine.Events;
 using TMPro;
+using System;
 
 namespace Scripts.Chest
 {
     public class ChestBehavior : MonoBehaviour
     {
+        public static event Action<string> OnChestCollected = delegate { };
 
         [SerializeField] private string boxName;
         [SerializeField] private float collectObjectDistance = 1.0f;
@@ -18,6 +20,8 @@ namespace Scripts.Chest
         public UnityEvent OnItemCollected;
 
         private AudioSource particleAudio;
+
+        const string dropMessage = "Dropped in ";
 
 
         private void OnEnable()
@@ -50,6 +54,7 @@ namespace Scripts.Chest
                 item.CollectItem();
                 PlayParticles();
                 OnItemCollected?.Invoke();
+                OnChestCollected.Invoke(dropMessage + boxName);
             }
         }
 

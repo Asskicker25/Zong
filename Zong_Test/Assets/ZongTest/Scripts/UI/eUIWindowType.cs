@@ -11,5 +11,6 @@ namespace Scripts.UI
         INV_INSTRUMENTS = 4,
         PLAYER_HUD = 5,
         FADE = 6,
+        MESSAGE = 7,
     }
 }

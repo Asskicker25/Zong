@@ -6,6 +6,7 @@ using Scripts.Instruments;
 using System;
 using Unity.VisualScripting;
 
+
 namespace Scripts.Inventory
 {
     public class InstrumentsCategoryPanel : BaseInventoryCategory

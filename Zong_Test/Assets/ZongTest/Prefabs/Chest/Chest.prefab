@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxName: 
-  collectObjectDistance: 1
+  collectObjectDistance: 2
   particles: {fileID: 0}
   particleParent: {fileID: 6401525036048952154}
   uiText: {fileID: 8429454444037696434}

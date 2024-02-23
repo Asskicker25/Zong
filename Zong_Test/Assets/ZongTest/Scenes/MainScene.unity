@@ -1716,10 +1716,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4296251782554333052, guid: 3415cbedcb12c874b9861779a4a2bc2a, type: 3}
-      propertyPath: awakeOnStart
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7691253749983391138, guid: 3415cbedcb12c874b9861779a4a2bc2a, type: 3}
       propertyPath: m_Name
       value: WindowsService
