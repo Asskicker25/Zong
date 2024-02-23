@@ -27,7 +27,7 @@ namespace Scripts.UI
         private void OnButtonClick()
         {
             windowService.CloseWindow(windowType);
-
+            windowService.OpenWindow(eUIWindowType.PLAYER_HUD);
             OnTapToStart.Invoke();
         }
     }

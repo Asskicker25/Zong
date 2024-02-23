@@ -2,11 +2,15 @@ using Scripts.Inventory;
 using System.Collections.Generic;
 using UnityEngine;
 using Scripts.ObjectPooling;
+using System;
+using Random = UnityEngine.Random;
 
 namespace Scripts.ItemSpawner
 {
     public class ItemSpawnService : MonoBehaviour
     {
+        public static event Action<BaseInventoryItem, Vector3> OnItemDropped = delegate { };
+
         [SerializeField] private InventoryItem_PoolingService poolingService;
         [SerializeField] private List<BaseInventoryItemConfig> inventoryItemConfigs;
         [SerializeField] float spawnRadius = 50;
@@ -58,6 +62,8 @@ namespace Scripts.ItemSpawner
             var spawnItem = poolingService.SpawnObject(config, transform);
             spawnItem.transform.position = playerTransform.position + playerTransform.forward * dropDistanceFromPlayer;
             spawnItem.transform.localScale = Vector3.one;
+
+            OnItemDropped.Invoke(spawnItem, spawnItem.transform.position);
         }
 
     }

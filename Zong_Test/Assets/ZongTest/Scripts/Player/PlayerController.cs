@@ -122,6 +122,13 @@ namespace Scripts.Player
             OpenInventory();
         }
 
+        public void ResetPlayer()
+        {
+            _camController.ResetCamera();
+            playerInventory.ResetPlayer();
+            Disable();
+        }
+
     }
 
 

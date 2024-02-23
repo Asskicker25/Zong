@@ -21,6 +21,8 @@ namespace Scripts.Player
         private Vector2 _currentMousePos = Vector2.zero;
         private Vector3 _parentRotation = Vector3.zero;
 
+        private Quaternion _initCameraRotation;
+
         private void Start()
         {
             Initialize();
@@ -45,6 +47,7 @@ namespace Scripts.Player
         {
             _parentRotation = transform.rotation.eulerAngles;
             _lastMousePos = Input.mousePosition;
+            _initCameraRotation = _camera.transform.rotation;
         }
 
         private void SetInput()
@@ -70,6 +73,12 @@ namespace Scripts.Player
 
             _cameraTransform.rotation = Quaternion.Euler(_newCamRotation);
             transform.rotation = Quaternion.Euler(_parentRotation);
+        }
+
+        public void ResetCamera()
+        {
+            _camera.transform.rotation = _initCameraRotation;
+
         }
     }
 }

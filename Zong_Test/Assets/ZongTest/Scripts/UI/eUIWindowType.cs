@@ -10,5 +10,6 @@ namespace Scripts.UI
         INV_POINTS = 3,
         INV_INSTRUMENTS = 4,
         PLAYER_HUD = 5,
+        FADE = 6,
     }
 }

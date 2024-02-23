@@ -15,6 +15,8 @@ namespace Scripts.Inventory
         [SerializeField] private float _raycastDistance;
         [Foldout("Raycast")]
         [SerializeField] private LayerMask _raycastMask;
+        [Foldout("Raycast")]
+        [SerializeField] private LayerMask _chestMask;
 
         private bool _canRaycast = true;
 
@@ -28,7 +30,7 @@ namespace Scripts.Inventory
         public void Setup(InventoryService inventoryService, ItemSpawnService itemSpawnService)
         {
             this._inventoryService = inventoryService;
-            this._itemSpawnService = itemSpawnService;   
+            this._itemSpawnService = itemSpawnService;
         }
 
         private void OnEnable()
@@ -38,7 +40,7 @@ namespace Scripts.Inventory
             InventoryGridUIItem.OnDropItemClicked += InventoryGridUIItem_OnDropItemClicked;
         }
 
-       
+
         private void OnDisable()
         {
             InventoryWindow.OnInventoryClosed -= InventoryWindow_OnInventoryClosed;
@@ -48,14 +50,12 @@ namespace Scripts.Inventory
 
         private void Update()
         {
-            if (!Raycast()) return;
-
-            SetInput();
+            Raycast();
         }
 
-        private bool Raycast()
+        private void Raycast()
         {
-            if(!_canRaycast) return false;
+            if (!_canRaycast) return;
 
             _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -63,11 +63,19 @@ namespace Scripts.Inventory
             {
                 //Getting component by caching collider in dictionary is fasted than compare tag.
                 _rayHitItem = _itemSpawnService.GetItem(_hitInfo.collider);
-                return true;
+
+                if (InteractPressed()) return;
+            }
+            else
+            {
+                _rayHitItem = null;
             }
 
-            _rayHitItem = null;
-            return false;
+            if (Physics.Raycast(_ray, out _hitInfo, _raycastDistance, _chestMask))
+            {
+                if (InteractPressed()) return;
+            }
+
         }
 
         private void OnDrawGizmos()
@@ -78,15 +86,17 @@ namespace Scripts.Inventory
             Gizmos.DrawLine(posInWorld, posInWorld + Camera.main.transform.forward * _raycastDistance);
         }
 
-        private void SetInput()
+        private bool InteractPressed()
         {
-            if(Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.F))
             {
                 _canRaycast = false;
-                OnItemPicked.Invoke(_rayHitItem.config);
-            }
-        }
+                OnItemPicked.Invoke(_rayHitItem == null? null : _rayHitItem.config);
 
+                return true;
+            }
+            return false;
+        }
 
         private void InventoryWindow_OnInventoryClosed()
         {
@@ -96,7 +106,7 @@ namespace Scripts.Inventory
 
         private void InstrumentsCategoryPanel_OnSelected()
         {
-            if(_rayHitItem == null) { return; }
+            if (_rayHitItem == null) { return; }
 
             _rayHitItem.CollectItem();
             _inventoryService.AddItem(_rayHitItem.config);
@@ -106,6 +116,11 @@ namespace Scripts.Inventory
             _inventoryService.RemoveItem(config);
 
             OnItemDropped.Invoke(config, transform);
+        }
+
+        public void ResetPlayer()
+        {
+            _canRaycast = true;
         }
 
 
