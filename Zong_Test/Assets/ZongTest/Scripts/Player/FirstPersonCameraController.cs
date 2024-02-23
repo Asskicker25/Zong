@@ -52,12 +52,12 @@ namespace Scripts.Player
 
         private void SetInput()
         {
-           /* _currentMousePos = Input.mousePosition;
-            _mouseDelta = _currentMousePos - _lastMousePos;
-            _lastMousePos = _currentMousePos;*/
+            /* _currentMousePos = Input.mousePosition;
+             _mouseDelta = _currentMousePos - _lastMousePos;
+             _lastMousePos = _currentMousePos;*/
 
-             _mouseDelta.x = Input.GetAxisRaw("Mouse X");
-             _mouseDelta.y = Input.GetAxisRaw("Mouse Y");
+            _mouseDelta.x = Input.GetAxisRaw("Mouse X");
+            _mouseDelta.y = Input.GetAxisRaw("Mouse Y");
 
             _mouseDelta.x = Mathf.Clamp(_mouseDelta.x, -_mouseClampValue, _mouseClampValue);
             _mouseDelta.y = Mathf.Clamp(_mouseDelta.y, -_mouseClampValue, _mouseClampValue);
@@ -70,6 +70,10 @@ namespace Scripts.Player
 
             _newCamRotation.x -= _mouseDelta.y * _senstivity.y * Time.deltaTime;
             _parentRotation.y += _mouseDelta.x * _senstivity.x * Time.deltaTime;
+
+            _newCamRotation.x = Mathf.Repeat(_newCamRotation.x + 180, 360) - 180;
+
+            _newCamRotation.x = Mathf.Clamp(_newCamRotation.x, -80.0f, 80.0f);
 
             _cameraTransform.rotation = Quaternion.Euler(_newCamRotation);
             transform.rotation = Quaternion.Euler(_parentRotation);
